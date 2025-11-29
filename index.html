@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>George's Towing LLC | Charlotte, NC</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+
+    body { color:#111827; background:#f3f4f6; }
+
+    header.hero {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color:#fff;
+      padding:80px 20px 70px;
+      text-align:center;
+      position:relative;
+    }
+
+    .call-btn-top {
+      position:absolute;
+      top:20px;
+      right:20px;
+      background:#ef4444;
+      color:#fff;
+      padding:10px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:0.95rem;
+      box-shadow:0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    nav {
+      background:#111827;
+      padding:10px 20px;
+      text-align:center;
+    }
+    nav a {
+      color:#e5e7eb;
+      margin:0 12px;
+      text-decoration:none;
+      font-size:0.95rem;
+      font-weight:bold;
+    }
+
+    .hero h1 { font-size:2.4rem; margin-bottom:8px; }
+    .hero p { font-size:1rem; max-width:650px; margin:0 auto 20px; color:#e5e7eb; }
+
+    .hero-cta {
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .hero-cta a {
+      padding:11px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:0.95rem;
+    }
+
+    .btn-primary { background:#f97316; color:#111827; }
+    .btn-secondary { border:1px solid #9ca3af; color:#e5e7eb; }
+
+    section {
+      padding:45px 20px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .section-title {
+      font-size:1.9rem;
+      text-align:center;
+      margin-bottom:8px;
+      color:#111827;
+    }
+    .section-subtitle {
+      text-align:center;
+      color:#6b7280;
+      max-width:650px;
+      margin:0 auto 30px;
+      font-size:0.95rem;
+    }
+
+    .cards {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+      gap:18px;
+    }
+
+    .card {
+      border-radius:12px;
+      border:1px solid #e5e7eb;
+      padding:18px;
+      background:#fff;
+      box-shadow:0 6px 16px rgba(15,23,42,0.04);
+    }
+
+    .card h3 { margin-bottom:6px; font-size:1.1rem; color:#111827; }
+    .card p { font-size:0.92rem; color:#4b5563; line-height:1.5; }
+
+    .work-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:20px;
+      margin-top:10px;
+    }
+
+    .placeholder {
+      background:#e5e7eb;
+      border-radius:10px;
+      height:180px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#4b5563;
+      font-weight:bold;
+      font-size:0.95rem;
+      box-shadow:0 4px 10px rgba(15,23,42,0.08);
+    }
+
+    .center { text-align:center; }
+
+    footer {
+      background:#111827;
+      color:#9ca3af;
+      text-align:center;
+      padding:16px 10px;
+      font-size:0.85rem;
+      margin-top:20px;
+    }
+
+    #chatbot-btn {
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      background:#f97316;
+      color:#111827;
+      padding:13px 17px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:0.9rem;
+      box-shadow:0 6px 16px rgba(0,0,0,0.25);
+      z-index:999;
+    }
+
+    #chatbot-window {
+      display:none;
+      position:fixed;
+      bottom:90px;
+      right:24px;
+      width:320px;
+      height:420px;
+      background:#f9fafb;
+      border-radius:14px;
+      box-shadow:0 8px 24px rgba(15,23,42,0.35);
+      z-index:999;
+      overflow:hidden;
+    }
+
+    #chatbot-header {
+      background:#111827;
+      color:#e5e7eb;
+      padding:12px;
+      text-align:center;
+      font-size:0.95rem;
+    }
+
+    #chatbot-messages {
+      padding:10px;
+      height:310px;
+      overflow-y:auto;
+      font-size:0.9rem;
+    }
+
+    #chatbot-input-area {
+      border-top:1px solid #e5e7eb;
+      padding:8px;
+      display:flex;
+      gap:6px;
+      background:#f3f4f6;
+    }
+
+    #chatbot-input {
+      flex:1;
+      padding:7px;
+      border-radius:6px;
+      border:1px solid #d1d5db;
+      font-size:0.9rem;
+    }
+
+    #chatbot-send {
+      padding:7px 10px;
+      border-radius:6px;
+      border:none;
+      background:#f97316;
+      color:#111827;
+      font-weight:bold;
+      cursor:pointer;
+      font-size:0.85rem;
+    }
+
+    .msg {
+      margin-bottom:6px;
+      line-height:1.4;
+    }
+    .msg strong { color:#111827; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <a href="tel:+17048916161" class="call-btn-top">Call Now</a>
+  <h1>George's Towing LLC</h1>
+  <p>Fast, friendly 24/7 towing and roadside assistance in Charlotte, NC.</p>
+
+  <div class="hero-cta">
+    <a href="tel:+17048916161" class="btn-primary">Request a Tow Now</a>
+    <a href="contact.html" class="btn-secondary">Send a Message</a>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="#services">Services</a>
+  <a href="#work">Our Work</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section id="services">
+  <h2 class="section-title">Towing & Roadside Services</h2>
+  <p class="section-subtitle">
+    Whether you're stranded on the side of the road or need a vehicle moved, George's Towing LLC is just a phone call away.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Flatbed Towing</h3>
+      <p>Safe, secure flatbed towing for cars, SUVs, and light trucks — local or longer distance.</p>
+    </div>
+    <div class="card">
+      <h3>24/7 Emergency Tows</h3>
+      <p>Day or night, weekends and holidays. If your vehicle won’t move, we will.</p>
+    </div>
+    <div class="card">
+      <h3>Roadside Assistance</h3>
+      <p>Help with dead batteries, flat tires, minor issues, or getting your vehicle to a trusted shop.</p>
+    </div>
+    <div class="card">
+      <h3>Accident Tows</h3>
+      <p>Prompt, careful towing after an accident to limit further damage and stress.</p>
+    </div>
+    <div class="card">
+      <h3>Vehicle Transport</h3>
+      <p>Need to move a vehicle from one location to another? We can help coordinate a smooth transport.</p>
+    </div>
+    <div class="card">
+      <h3>Spanish-Friendly Service</h3>
+      <p>We can assist Spanish-speaking customers so it’s easier to get help when you need it most.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <h2 class="section-title">Our Work</h2>
+  <p class="section-subtitle">
+    Replace these placeholders with real photos of your trucks, jobs, and roadside assistance work.
+  </p>
+
+  <div class="work-grid">
+    <div class="placeholder">Tow Truck Photo 1</div>
+    <div class="placeholder">Tow Truck Photo 2</div>
+    <div class="placeholder">Roadside Help Photo</div>
+    <div class="placeholder">Customer Vehicle Loaded</div>
+  </div>
+
+  <p class="center" style="margin-top:18px;font-size:0.95rem;color:#4b5563;">
+    Service area example: Charlotte, NC and nearby areas. Update this text to match your exact coverage.
+  </p>
+</section>
+
+<section>
+  <h2 class="section-title">Need a Tow Right Now?</h2>
+  <p class="section-subtitle">
+    Call George's Towing LLC and speak directly with a local driver. We’ll get your location and send help as quickly as possible.
+  </p>
+  <p class="center" style="margin-top:8px;">
+    <a href="tel:+17048916161" class="btn-primary" style="display:inline-block;">Tap to Call: (704) 891-6161</a>
+  </p>
+</section>
+
+<footer>
+  © 2025 George's Towing LLC — Charlotte, NC. All Rights Reserved.
+</footer>
+
+<div id="chatbot-btn">Chat with Dispatch</div>
+
+<div id="chatbot-window">
+  <div id="chatbot-header">George's Towing Assistant</div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Ask about towing or roadside help..." />
+    <button id="chatbot-send">Send</button>
+  </div>
+</div>
+
+<script>
+const chatbotBtn = document.getElementById("chatbot-btn");
+const chatbotWindow = document.getElementById("chatbot-window");
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotSend = document.getElementById("chatbot-send");
+const chatbotMessages = document.getElementById("chatbot-messages");
+
+chatbotBtn.onclick = () => {
+  chatbotWindow.style.display =
+    chatbotWindow.style.display === "block" ? "none" : "block";
+};
+
+function timeGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return "Good morning";
+  if (h < 18) return "Good afternoon";
+  return "Good evening";
+}
+
+function initialGreeting() {
+  const g = timeGreeting();
+  return (
+    g +
+    "! This is the George's Towing assistant. " +
+    "Are you stuck right now, asking about prices, or just have a general question?"
+  );
+}
+
+function isSpanish(text) {
+  return (
+    /[áéíóúñ¿¡]/i.test(text) ||
+    /\b(hola|grúa|remolque|camión|llanta|pinchada|batería|ayuda|precio|costo|carretera)\b/i.test(
+      text
+    )
+  );
+}
+
+function appendMessage(sender, text) {
+  const div = document.createElement("div");
+  div.className = "msg";
+  div.innerHTML = "<strong>" + sender + ":</strong> " + text;
+  chatbotMessages.appendChild(div);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+appendMessage("Bot", initialGreeting());
+
+function processEnglish(msg) {
+  const t = msg.toLowerCase();
+
+  if (t.includes("stuck") || t.includes("now") || t.includes("right now") || t.includes("broke down")) {
+    return "If you are stuck right now, the fastest way to get help is to call us at (704) 891-6161 so we can get your location and send a truck.";
+  }
+
+  if (t.includes("price") || t.includes("cost") || t.includes("how much")) {
+    return "Towing prices depend on distance, type of vehicle, and situation. Call (704) 891-6161 and tell us where you are and where the vehicle is going for a quick estimate.";
+  }
+
+  if (t.includes("flat") || t.includes("tire")) {
+    return "We can help move your vehicle or get it to a shop if you have a flat tire. Tell me where you are and whether the vehicle is safe where it’s parked.";
+  }
+
+  if (t.includes("battery") || t.includes("jump") || t.includes("won't start") || t.includes("no start")) {
+    return "We can help with non-starting vehicles by towing them to a repair shop or another location you choose.";
+  }
+
+  if (t.includes("hours") || t.includes("open") || t.includes("24")) {
+    return "Service hours: typically available 24/7 for towing and roadside calls. If you need help now, please call (704) 891-6161.";
+  }
+
+  if (t.includes("area") || t.includes("where") || t.includes("location") || t.includes("charlotte")) {
+    return "We serve Charlotte, NC and nearby surrounding areas. Call and share your location so we can confirm service availability.";
+  }
+
+  return "Got it. Is your question about immediate towing, pricing, service area, or something else?";
+}
+
+function processSpanish(msg) {
+  const t = msg.toLowerCase();
+
+  if (t.includes("atascado") || t.includes("aquí") || t.includes("ahora") || t.includes("varado")) {
+    return "Si necesita ayuda ahora mismo, lo más rápido es llamar al (704) 891-6161 para darnos su ubicación y enviarle una grúa.";
+  }
+
+  if (t.includes("precio") || t.includes("costo") || t.includes("cuánto")) {
+    return "El costo depende de la distancia, el tipo de vehículo y la situación. Llámenos al (704) 891-6161 para un estimado rápido.";
+  }
+
+  if (t.includes("llanta") || t.includes("pinchada") || t.includes("neumático")) {
+    return "Podemos remolcar su vehículo a un taller o a otra ubicación si tiene una llanta dañada o pinchada.";
+  }
+
+  if (t.includes("batería") || t.includes("no arranca") || t.includes("encender")) {
+    return "Si su vehículo no arranca, podemos remolcarlo a un taller u otro lugar que usted elija.";
+  }
+
+  if (t.includes("horario") || t.includes("abiertos") || t.includes("24")) {
+    return "Generalmente ofrecemos servicio de remolque las 24 horas. Si necesita ayuda ahora, llame al (704) 891-6161.";
+  }
+
+  if (t.includes("zona") || t.includes("área") || t.includes("dónde") || t.includes("charlotte")) {
+    return "Atendemos Charlotte, NC y áreas cercanas. Llámenos y díganos dónde se encuentra para confirmar el servicio.";
+  }
+
+  return "Entendido. ¿Su pregunta es sobre remolque inmediato, precios, zona de servicio u otra cosa?";
+}
+
+chatbotSend.onclick = () => {
+  const text = chatbotInput.value.trim();
+  if (!text) return;
+
+  appendMessage("You", text);
+  chatbotInput.value = "";
+
+  setTimeout(() => {
+    if (isSpanish(text)) {
+      appendMessage("Bot", processSpanish(text));
+    } else {
+      appendMessage("Bot", processEnglish(text));
+    }
+  }, 500);
+};
+
+chatbotInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    chatbotSend.click();
+  }
+});
+</script>
+
+</body>
+</html>
